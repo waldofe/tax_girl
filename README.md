@@ -1,10 +1,10 @@
 tax_girl
 =======
+
 #### Under construction..
 
 
 ## Goal
-=======
 
 Build a currency calculation arbitrator with a simple Ruby DSL syntax
 
