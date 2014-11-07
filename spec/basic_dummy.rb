@@ -1,7 +1,7 @@
 require 'tax_girl'
 
 class BasicDummy
-  taxgirl :value do
+  taxgirl :price do
     increase do
       currency 100, 200
       percentage 5
