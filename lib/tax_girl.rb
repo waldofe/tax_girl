@@ -4,21 +4,39 @@ def taxgirl(price_attr, params = {}, &increase_block)
   subject = TaxGirl.new(price_attr, params, increase_block)
 
   define_method price_attr do
-    # calculating currency methods
-    subject.total = subject.currency_demand.map do |method|
-      self.send(method)
-    end.reduce(:+)
-
-    # calculating percentage methods
-    subject.percentage_demand.each do |method|
-      value = self.send(method)
-      subject.total += (value.to_f / 100) * subject.total
-    end
+    Increaser.new(subject, self).calculate
 
     subject.total
   end
 
   subject.evaluate!
+end
+
+class Increaser
+  attr_accessor :subject, :scope
+
+  def initialize(subject, scope)
+    @subject = subject
+    @scope   = scope
+  end
+
+  def calculate
+    calculate_currency
+    calculate_percentage
+  end
+
+  def calculate_currency
+    subject.total = subject.currency_demand.map do |method|
+      scope.send(method)
+    end.reduce(:+)
+  end
+
+  def calculate_percentage
+    subject.percentage_demand.each do |method|
+      value = scope.send(method)
+      subject.total += (value.to_f / 100) * subject.total
+    end
+  end
 end
 
 class TaxGirl
