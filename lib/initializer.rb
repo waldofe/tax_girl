@@ -9,6 +9,8 @@ class Initializer
     @increase_block = increase_block
     @total = 0
     @currency_values = []
+    @currency_demand = []
+    @percentage_demand = []
   end
 
   # Brings all taxgirl block into TaxGirl class
@@ -26,11 +28,11 @@ class Initializer
 
   # catalogs currency methods
   def currency(*args)
-    @currency_demand = args
+    @currency_demand += args
   end
 
   # catalogs percentage methods
   def percentage(*args)
-    @percentage_demand = args
+    @percentage_demand += args
   end
 end
