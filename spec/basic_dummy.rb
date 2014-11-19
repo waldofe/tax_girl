@@ -3,13 +3,22 @@ require 'tax_girl'
 class BasicDummy
   taxgirl :price do
     increase do
-      currency   :first_fee, :second_fee
-      percentage :first_percentage_fee, :second_percentage_fee
+      currency   :provider_price, :convenience_fee
+      percentage :commission_fee, :another_percentage_tax
+    end
+
+    discount do
+      currency   :coupon_discount, :another_fix_discount
+      percentage :black_friday_discount, :another_percentage_discount
     end
   end
 
-  attr_accessor :first_fee,
-                :second_fee,
-                :first_percentage_fee,
-                :second_percentage_fee
+  attr_accessor :provider_price,
+                :convenience_fee,
+                :commission_fee,
+                :another_percentage_discount,
+                :coupon_discount,
+                :another_fix_discount,
+                :black_friday_discount,
+                :another_percentage_discount
 end
