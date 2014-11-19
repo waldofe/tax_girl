@@ -16,7 +16,7 @@ class BasicDummy
   attr_accessor :provider_price,
                 :convenience_fee,
                 :commission_fee,
-                :another_percentage_discount,
+                :another_percentage_tax,
                 :coupon_discount,
                 :another_fix_discount,
                 :black_friday_discount,
