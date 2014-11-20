@@ -1,14 +1,17 @@
-require 'initializer'
+require 'composer'
 require 'increaser'
+require 'discounter'
 require 'pry'
 
-def taxgirl(price_attr, params = {}, &increase_block)
-  initializer = Initializer.new(increase_block)
+def taxgirl(price_attr, &increase_block)
+  composer = Composer.new(increase_block)
 
-  define_method :increase_tax do
-    increaser = Increaser.new(initializer, self)
-    increaser.amount
+  define_method price_attr do
+    Increaser.new(composer, self)
+    Discounter.new(composer, self)
+
+    composer.total
   end
 
-  initializer.evaluate!
+  composer.evaluate!
 end
