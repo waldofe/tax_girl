@@ -1,18 +1,21 @@
 class Increaser
-  attr_accessor :initializer, :scope
+  attr_accessor :initializer, :scope, :amount
 
   def initialize(initializer, scope)
     @initializer = initializer
     @scope       = scope
+    @amount      = 0
+
+    calculate_amount
   end
 
-  def calculate
+  def calculate_amount
     calculate_currency
     calculate_percentage
   end
 
   def calculate_currency
-    initializer.total = initializer.currency_demand.map do |method|
+    self.amount += initializer.currency_demand.map do |method|
       scope.send(method) || 0
     end.reduce(:+)
   end
@@ -20,7 +23,7 @@ class Increaser
   def calculate_percentage
     initializer.percentage_demand.each do |method|
       value = scope.send(method)
-      initializer.total += (value.to_f / 100) * initializer.total
+      self.amount += (value.to_f / 100) * amount
     end
   end
 end

@@ -4,13 +4,12 @@ class Initializer
                 :currency_values,
                 :total
 
-  def initialize(price_attr, params, increase_block)
-    @method = params.fetch(:after, nil)
+  def initialize(increase_block)
     @increase_block = increase_block
-    @total = 0
     @currency_values = []
     @currency_demand = []
     @percentage_demand = []
+    @total = 0
   end
 
   # Brings all taxgirl block into TaxGirl class
