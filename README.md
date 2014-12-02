@@ -36,12 +36,12 @@ class Product
     end
 
     def commission_fee
-      // It means 10% to tax girl
+      # It means 10% to tax girl
       10.0
     end
 
     def another_fee
-      // It means 5.5% to tax girl
+      # It means 5.5% to tax girl
       5.5
     end
   end
@@ -82,12 +82,12 @@ class Product
     end
 
     def commission_fee
-      // It means 10% to tax girl
+      # It means 10% to tax girl
       10.0
     end
 
     def another_fee
-      // It means 5.5% to tax girl
+      # It means 5.5% to tax girl
       5.5
     end
 
@@ -96,7 +96,7 @@ class Product
     end
 
     def black_friday_discount
-      // It means 15% to tax girl
+      # It means 15% to tax girl
       15.0
     end
   end
