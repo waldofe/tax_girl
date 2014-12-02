@@ -26,24 +26,24 @@ class Product
       currency   :provider_price, :convenience_fee
       percentage :commission_fee, :another_fee
     end
+  end
+  
+  def provider_price
+    105.5
+  end
 
-    def provider_price
-      105.5
-    end
+  def convenience_fee
+    5.0
+  end
 
-    def convenience_fee
-      5.0
-    end
+  def commission_fee
+    # It means 10% to tax girl
+    10.0
+  end
 
-    def commission_fee
-      # It means 10% to tax girl
-      10.0
-    end
-
-    def another_fee
-      # It means 5.5% to tax girl
-      5.5
-    end
+  def another_fee
+    # It means 5.5% to tax girl
+    5.5
   end
 end
 
@@ -72,33 +72,33 @@ class Product
       currency   :special_coupon_discount
       percentage :black_friday_discount
     end
+  end
+  
+  def provider_price
+    105.5
+  end
 
-    def provider_price
-      105.5
-    end
+  def convenience_fee
+    5.0
+  end
 
-    def convenience_fee
-      5.0
-    end
+  def commission_fee
+    # It means 10% to tax girl
+    10.0
+  end
 
-    def commission_fee
-      # It means 10% to tax girl
-      10.0
-    end
+  def another_fee
+    # It means 5.5% to tax girl
+    5.5
+  end
 
-    def another_fee
-      # It means 5.5% to tax girl
-      5.5
-    end
+  def special_coupon_discount
+    20.0
+  end
 
-    def special_coupon_discount
-      20.0
-    end
-
-    def black_friday_discount
-      # It means 15% to tax girl
-      15.0
-    end
+  def black_friday_discount
+    # It means 15% to tax girl
+    15.0
   end
 end
 
