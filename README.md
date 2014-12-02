@@ -3,14 +3,14 @@ tax_girl
 
 ### Introduction
 
-TaxGirl is a simple way to keep currency calculation logic explicit using a pretty
-ruby DSL. It also avoids the hard work of seaching for layers and layers of
-currency calculation methods.
+TaxGirl is a simple tool that help's keeping calculation logic explicit using a pretty
+ruby DSL. It also avoids the hard work of seaching for layers and layers of calculation methods.
 
-### Increase
+### Composing price
 
-Block where you compose your currency amount by listing which methods will
-be used to that.
+#### Increase block
+
+Block where you define which methods will be triggered to compose the main price amount.
 
 #### Params
 
@@ -56,10 +56,9 @@ product.price
 
 Obs: *price* will be calculated every time it's called.
 
-### Discount
+#### Discount block
 
-Block where you compose which methods will be used to discount increased value,
-*price* on the example above.
+Block where you define which methods will be triggered to discount the main price amount calculated on *increase block*.
 
 ```ruby
 class Product
