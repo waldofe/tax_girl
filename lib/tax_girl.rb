@@ -1,10 +1,9 @@
 require 'composer'
 require 'increaser'
 require 'discounter'
-require 'pry'
 
-def taxgirl(price_attr, &increase_block)
-  composer = Composer.new(increase_block)
+def taxgirl(price_attr, &main_block)
+  composer = Composer.new(main_block)
 
   define_method price_attr do
     Increaser.new(composer, self)
