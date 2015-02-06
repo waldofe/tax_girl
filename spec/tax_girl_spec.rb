@@ -3,54 +3,69 @@ require 'tax_girl'
 
 describe 'TaxGirl initial syntax' do
   describe '#taxgirl' do
-    context 'using BasicDummy' do
-      context 'when all increase methods responds with a number' do
-        let(:dummy) { BasicDummy.new }
+    let!(:simple_dummy) {
+      BasicDummy.new provider_price:         10,
+                     convenience_fee:        20,
+                     commission_fee:         5,
+                     another_percentage_tax: 2
+    }
 
-        before(:each) do
-          dummy.provider_price = 10
-          dummy.convenience_fee = 20
-          dummy.commission_fee = 5
-          dummy.another_percentage_tax = 2
-        end
+    let!(:complete_dummy) {
+      BasicDummy.new provider_price:              100,
+                     convenience_fee:             0,
+                     commission_fee:              0,
+                     another_percentage_tax:      0,
+                     coupon_discount:             10,
+                     another_fix_discount:        20,
+                     black_friday_discount:       50,
+                     another_percentage_discount: 1
+    }
 
-        it 'main taxgirl attribute returns increased tax' do
-          expect(dummy.price).to eq 32.13
-        end
-
-        it 'multiple calls does not affect calculation' do
-          dummy.price
-
-          expect(dummy.price).to eq 32.13
-        end
+    context 'when only increase methods (simple_dummy)' do
+      it 'main taxgirl attribute returns calculated tax' do
+        expect(simple_dummy.price).to eq 32.13
       end
 
-      context 'when all discount methods responds with a number' do
-        let(:dummy) { BasicDummy.new }
+      it 'multiple calls does not affect calculation result' do
+        simple_dummy.price
+        expect(simple_dummy.price).to eq 32.13
+      end
 
-        before(:each) do
-          # Increase values
-          dummy.provider_price = 100
-          dummy.convenience_fee = 0
-          dummy.commission_fee = 0
-          dummy.another_percentage_tax = 0
+      it 'changes on the fly are considered on calculation result' do
+        simple_dummy.provider_price = 100
+        expect(simple_dummy.price).to eq 128.52
+      end
+    end
 
-          # Discount values
-          dummy.coupon_discount = 10
-          dummy.another_fix_discount = 20
-          dummy.black_friday_discount = 50
-          dummy.another_percentage_discount = 1
-        end
+    context 'when increase and discount methods (complete_dummy)' do
+      it 'main taxgirl attribute returns calculated tax' do
+        expect(complete_dummy.price).to eq 34.65
 
-        it 'main taxgirl attribute returns discounted tax' do
-          expect(dummy.price).to eq 34.65
-        end
+        complete_dummy.provider_price = 90
+      end
 
-        it 'multiple calls does not affect calculation' do
-          dummy.price
+      it 'multiple calls does not affect calculation result' do
+        complete_dummy.price
+        expect(complete_dummy.price).to eq 34.65
+      end
 
-          expect(dummy.price).to eq 34.65
-        end
+      it 'changes on the fly are considered on calculation result' do
+        complete_dummy.provider_price = 90
+        expect(complete_dummy.price).to eq 29.7
+      end
+    end
+
+    context 'when no value from a currency method' do
+      it '0 is returned from it' do
+        simple_dummy.provider_price = nil
+        expect(simple_dummy.price).to eq 21.42
+      end
+    end
+
+    context 'when no value from a percentage method' do
+      it '0 is returned from it' do
+        simple_dummy.commission_fee = nil
+        expect(simple_dummy.price).to eq 30.6
       end
     end
   end
