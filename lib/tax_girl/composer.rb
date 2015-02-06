@@ -1,4 +1,4 @@
-class Composer
+class TaxGirl::Composer
   attr_accessor :demand_methods,
                 :current_demand,
                 :total

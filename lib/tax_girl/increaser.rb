@@ -1,11 +1,12 @@
-class Discounter
-  attr_accessor :composer, :scope
+class TaxGirl::Increaser
+  attr_accessor :composer, :scope, :amount
 
   def initialize(composer, scope)
     @composer          = composer
     @scope             = scope
-    @currency_demand   = composer.demand_methods[:discount][:currency]
-    @percentage_demand = composer.demand_methods[:discount][:percentage]
+    @amount            = 0
+    @currency_demand   = composer.demand_methods[:increase][:currency]
+    @percentage_demand = composer.demand_methods[:increase][:percentage]
 
     calculate_amount
   end
@@ -13,10 +14,12 @@ class Discounter
   def calculate_amount
     calculate_currency
     calculate_percentage
+
+    composer.total = amount
   end
 
   def calculate_currency
-    self.composer.total -= @currency_demand.map do |method|
+    self.amount += @currency_demand.map do |method|
       scope.send(method) || 0
     end.reduce(:+)
   end
@@ -24,7 +27,7 @@ class Discounter
   def calculate_percentage
     @percentage_demand.each do |method|
       value = scope.send(method) || 0
-      self.composer.total -= (value.to_f / 100) * composer.total
+      self.amount += (value.to_f / 100) * amount
     end
   end
 end
