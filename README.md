@@ -3,14 +3,14 @@ tax_girl
 
 ### Introduction
 
-TaxGirl is a simple way to keep currency calculation logic explicit using a pretty
-ruby DSL. It also avoids the hard work of seaching for layers and layers of
-currency calculation methods.
+TaxGirl is a simple tool that help's keeping calculation logic explicit using a pretty
+ruby DSL. It also avoids the hard work of seaching for layers and layers of calculation methods.
 
-### Increase
+### Composing price
 
-Block where you compose your currency amount by listing which methods will
-be used to that.
+#### Increase block
+
+Block where you define which methods will be triggered to compose the main price amount.
 
 #### Params
 
@@ -26,24 +26,24 @@ class Product
       currency   :provider_price, :convenience_fee
       percentage :commission_fee, :another_fee
     end
+  end
+  
+  def provider_price
+    105.5
+  end
 
-    def provider_price
-      105.5
-    end
+  def convenience_fee
+    5.0
+  end
 
-    def convenience_fee
-      5.0
-    end
+  def commission_fee
+    # It means 10% to tax girl
+    10.0
+  end
 
-    def commission_fee
-      // It means 10% to tax girl
-      10.0
-    end
-
-    def another_fee
-      // It means 5.5% to tax girl
-      5.5
-    end
+  def another_fee
+    # It means 5.5% to tax girl
+    5.5
   end
 end
 
@@ -56,10 +56,9 @@ product.price
 
 Obs: *price* will be calculated every time it's called.
 
-### Discount
+#### Discount block
 
-Block where you compose which methods will be used to discount increased value,
-*price* on the example above.
+Block where you define which methods will be triggered to discount the main price amount calculated on *increase block*.
 
 ```ruby
 class Product
@@ -73,33 +72,33 @@ class Product
       currency   :special_coupon_discount
       percentage :black_friday_discount
     end
+  end
+  
+  def provider_price
+    105.5
+  end
 
-    def provider_price
-      105.5
-    end
+  def convenience_fee
+    5.0
+  end
 
-    def convenience_fee
-      5.0
-    end
+  def commission_fee
+    # It means 10% to tax girl
+    10.0
+  end
 
-    def commission_fee
-      // It means 10% to tax girl
-      10.0
-    end
+  def another_fee
+    # It means 5.5% to tax girl
+    5.5
+  end
 
-    def another_fee
-      // It means 5.5% to tax girl
-      5.5
-    end
+  def special_coupon_discount
+    20.0
+  end
 
-    def special_coupon_discount
-      20.0
-    end
-
-    def black_friday_discount
-      // It means 15% to tax girl
-      15.0
-    end
+  def black_friday_discount
+    # It means 15% to tax girl
+    15.0
   end
 end
 
