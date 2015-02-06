@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
 
   s.add_development_dependency 'bundler', '~> 1.7'
-  add_development_dependency   'rspec', '~> 3.1', '>= 3.1.0'
+  s.add_development_dependency   'rspec', '~> 3.1', '>= 3.1.0'
 end
