@@ -1,4 +1,4 @@
-class TaxGirl::Discounter
+class Discounter
   attr_accessor :composer, :scope
 
   def initialize(composer, scope)
@@ -7,7 +7,7 @@ class TaxGirl::Discounter
     @currency_demand   = composer.demand_methods[:discount][:currency]
     @percentage_demand = composer.demand_methods[:discount][:percentage]
 
-    calculate_amount
+    calculate_amount if @currency_demand.any?
   end
 
   def calculate_amount

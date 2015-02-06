@@ -68,5 +68,53 @@ describe 'TaxGirl initial syntax' do
         expect(simple_dummy.price).to eq 30.6
       end
     end
+
+    context 'when theres no discount block' do
+      let!(:dummy) do
+        class Dummy
+          taxgirl :price do
+            increase do
+              currency :p1
+            end
+          end
+
+          def p1
+            100
+          end
+        end
+
+        Dummy.new
+      end
+
+      it 'discounter does not calculate amount' do
+        expect_any_instance_of(Discounter).not_to receive(:calculate_amount)
+
+        dummy.price
+      end
+    end
+
+    context 'when theres no increase block' do
+      let!(:dummy) do
+        class Dummy
+          taxgirl :price do
+            discount do
+              currency :p1
+            end
+          end
+
+          def p1
+            100
+          end
+        end
+
+        Dummy.new
+      end
+
+      it 'increaser does not calculate amount' do
+        expect_any_instance_of(Increaser).not_to receive(:calculate_amount)
+
+        dummy.price
+      end
+    end
   end
 end
