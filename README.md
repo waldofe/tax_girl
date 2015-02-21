@@ -1,6 +1,8 @@
 tax_girl
 =======
 
+[![Code Climate](https://codeclimate.com/github/oswaldoferreira/tax_girl/badges/gpa.svg)](https://codeclimate.com/github/oswaldoferreira/tax_girl)
+
 ### Introduction
 
 TaxGirl is a simple tool that help's keeping calculation logic explicit using a pretty
