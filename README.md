@@ -1,7 +1,7 @@
 tax_girl
 =======
 
-[![Code Climate](https://codeclimate.com/github/oswaldoferreira/tax_girl/badges/gpa.svg)](https://codeclimate.com/github/oswaldoferreira/tax_girl) [![Test Coverage](https://codeclimate.com/github/oswaldoferreira/tax_girl/badges/coverage.svg)](https://codeclimate.com/github/oswaldoferreira/tax_girl)
+[![Build Status](https://travis-ci.org/oswaldoferreira/tax_girl.svg?branch=master)](https://travis-ci.org/oswaldoferreira/tax_girl)  [![Code Climate](https://codeclimate.com/github/oswaldoferreira/tax_girl/badges/gpa.svg)](https://codeclimate.com/github/oswaldoferreira/tax_girl)  [![Test Coverage](https://codeclimate.com/github/oswaldoferreira/tax_girl/badges/coverage.svg)](https://codeclimate.com/github/oswaldoferreira/tax_girl)
 
 ### Introduction
 
