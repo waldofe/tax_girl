@@ -1,5 +1,4 @@
-require 'basic_dummy'
-require 'tax_girl'
+require 'spec_helper'
 
 describe 'TaxGirl initial syntax' do
   describe '#taxgirl' do
