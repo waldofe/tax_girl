@@ -19,6 +19,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake', '~> 10.4'
   s.add_development_dependency 'bundler', '~> 1.7'
-  s.add_development_dependency 'rspec', '~> 3.1', '>= 3.1.0'
+  s.add_development_dependency 'rspec', '3.3.0'
 end
 
